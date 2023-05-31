@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Обновить данные о сотруднике</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page product-page">
+    <section class="clean-block clean-product dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Обновить данные о сотруднике</h2>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-6">
+                    <div th:if="${message}" class="alert alert-warning text-center" role="alert">
+                        <strong th:text="${message}"></strong>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="block-content">
+                <form th:action="'/employees/edit/' + ${employee.id}" method="post" enctype="multipart/form-data">
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-6 mb-2">
+                            <div class="row d-xl-flex">
+                                <div class="col-xl-4 d-xl-flex">
+                                    <p>ФИО</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" required="" name="fio" th:value="${employee.fio}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-xl-4 d-xl-flex">
+                                    <p>Должность</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" required="" name="post" th:value="${employee.post}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-xl-4 d-xl-flex">
+                                    <p>Фотография</p>
+                                </div>
+                                <div class="col"><input class="form-control" type="file"
+                                                        accept="image/*" name="file"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col">
+                            <button class="btn btn-primary" type="submit" style="margin-right: 15px;">Обновить</button>
+                            <button class="btn btn-secondary" type="reset">Очистить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+<footer th:insert="blocks/footer :: footer" class="page-footer dark mt-auto"></footer>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

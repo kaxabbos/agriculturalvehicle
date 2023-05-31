@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Мои задачи</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<div th:insert="blocks/nav :: nav"></div>
+
+<main class="page catalog-page">
+    <section class="clean-block clean-catalog dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Мои задачи</h2>
+            </div>
+            <div class="content">
+                <div class="row p-3">
+                    <div th:each="i : ${tasks}" class="col-4">
+                        <div class="clean-product-item">
+                            <div class="image">
+                                <img class="img-fluid d-block mx-auto"
+                                     th:src="'/img/' + ${i.photo}">
+                            </div>
+                            <div align="center">
+                                <p class="lead" th:text="${i.name}"></p>
+                            </div>
+                            <p>Место проведения: <span th:text="${i.address}"></span></p>
+                            <p>Стоимость: <span th:text="${i.price}"></span></p>
+                            <p>Статус: <span th:text="${i.status.name}"></span></p>
+                            <div th:if="${i.status.name() == 'IN_PROGRESS'}" class="row">
+                                <div class="col">
+                                    <a class="btn btn-primary w-100" th:href="'/tasks/done/' + ${i.id}">Выполнено</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer th:insert="blocks/footer :: footer" class="page-footer dark mt-auto"></footer>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

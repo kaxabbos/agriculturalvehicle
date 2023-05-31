@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Сотрудники</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<div th:insert="blocks/nav :: nav"></div>
+
+<main class="page catalog-page">
+    <section class="clean-block clean-catalog dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Сотрудники</h2>
+            </div>
+            <div class="content">
+                <div class="row p-3">
+                    <div th:each="i : ${employees}" class="col-3">
+                        <div class="clean-product-item">
+                            <div class="image">
+                                <img class="img-fluid d-block mx-auto"
+                                     th:src="'/img/' + ${i.photo}">
+                            </div>
+                            <div align="center">
+                                <p class="lead" th:text="${i.fio}"></p>
+                            </div>
+                            <p>Логин: <span th:text="${i.username}"></span></p>
+                            <p>Должность: <span th:text="${i.post}"></span></p>
+                            <div th:if="${role == 'ADMIN'}" class="row">
+                                <div class="col">
+                                    <a class="btn btn-primary w-100" th:href="'/employees/edit/' + ${i.id}">Обновить</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer th:insert="blocks/footer :: footer" class="page-footer dark mt-auto"></footer>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

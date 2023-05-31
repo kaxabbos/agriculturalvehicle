@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Товары</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<div th:insert="blocks/nav :: nav"></div>
+
+<main class="page catalog-page">
+    <section class="clean-block clean-catalog dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Товары</h2>
+            </div>
+            <div class="content">
+                <div class="row p-2">
+                    <div th:if="${role == 'MANAGER'}" class="col-12 mb-2">
+                        <a href="/products/add" class="btn btn-primary w-100">Добавить новый товар</a>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <div class="row">
+                            <div class="col" align="center"><p class="lead">Название</p></div>
+                            <div class="col" align="center"><p class="lead">Цена</p></div>
+                            <div class="col" align="center"><p class="lead">Количество проданных</p></div>
+                            <div class="col-2"></div>
+                            <div class="col-1"></div>
+                            <div th:if="${role == 'MANAGER'}" class="col-2"></div>
+                            <div th:if="${role == 'MANAGER'}" class="col-2"></div>
+                        </div>
+                    </div>
+                    <div th:each="i : ${products}" class="col-12 mb-2">
+                        <form th:action="'/products/buy/' + ${i.id}" method="post">
+                            <div class="row">
+                                <div class="col"><p th:text="${i.name}"></p></div>
+                                <div class="col"><p th:text="${i.price}"></p></div>
+                                <div class="col"><p th:text="${i.quantity}"></p></div>
+                                <div class="col-2"><input name="quantity" type="number" class="form-control" min="1" step="1" required></div>
+                                <div class="col-1"><button type="submit" class="btn btn-primary w-100">Купить</button></div>
+                                <div th:if="${role == 'MANAGER'}" class="col-2">
+                                    <a th:href="'/products/edit/' + ${i.id}" class="btn btn-success w-100">Обновить</a>
+                                </div>
+                                <div th:if="${role == 'MANAGER'}" class="col-2">
+                                    <a th:href="'/products/edit/' + ${i.id}" class="btn btn-danger w-100">Удалить</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer th:insert="blocks/footer :: footer" class="page-footer dark mt-auto"></footer>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

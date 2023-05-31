@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Добавить товар</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page product-page">
+    <section class="clean-block clean-product dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Добавить товар</h2>
+            </div>
+            <div class="block-content">
+                <form action="/products/add" method="post">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <div class="row d-xl-flex">
+                                <div class="col-xl-4 d-xl-flex">
+                                    <p>Название</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" required="" name="name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-xl-4 d-xl-flex">
+                                    <p>Цена</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="number" min="0.01"
+                                           step="0.01" required name="price">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-primary w-100" type="submit">Добавить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+<footer th:insert="blocks/footer :: footer" class="page-footer dark mt-auto"></footer>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>
